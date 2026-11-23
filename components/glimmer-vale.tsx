@@ -1360,7 +1360,10 @@ export default function GlimmerVale(props: GlimmerValeProps) {
         const ro = new ResizeObserver(measure)
         ro.observe(root)
 
+        root.classList.add("glimmer-fallback-active")
+        canvas.style.visibility = "hidden"
         const gl = canvas.getContext("webgl2", { alpha: false, antialias: false, premultipliedAlpha: true, preserveDrawingBuffer: true }) as WebGL2RenderingContext | null
+
         if (!gl) {
             root.classList.add("glimmer-fallback-active")
             canvas.style.visibility = "hidden"
@@ -1375,8 +1378,13 @@ export default function GlimmerVale(props: GlimmerValeProps) {
             gpu = setupGpu(gl)
         } catch (err) {
             console.error("GlimmerVale:", err)
-            return () => ro.disconnect()
+            return () => {
+                ro.disconnect()
+                root.classList.remove("glimmer-fallback-active")
+                canvas.style.visibility = ""
+            }
         }
+
         let hdr = !!gl.getExtension("EXT_color_buffer_float")
         const mq = typeof window.matchMedia === "function" ? window.matchMedia("(prefers-reduced-motion: reduce)") : null
         const spr = new Float32Array(MAX_SPRITES * 6 * SPR_STRIDE)
@@ -1717,12 +1725,18 @@ export default function GlimmerVale(props: GlimmerValeProps) {
             gl.uniform2f(C.u.u_bl, glowS * 0.75, num(adv.fringe, 100) / 100)
             gl.drawArrays(gl.TRIANGLES, 0, 3)
             gl.bindVertexArray(null)
+            canvas.style.visibility = ""
+            root.classList.remove("glimmer-fallback-active")
         }
+
         raf = requestAnimationFrame(frame)
         return () => {
             cancelAnimationFrame(raf)
             ro.disconnect()
+            root.classList.remove("glimmer-fallback-active")
+            canvas.style.visibility = ""
             if (scene) freeTarget(gl, scene)
+
             bloom.forEach((t) => freeTarget(gl, t))
         }
     }, [])
