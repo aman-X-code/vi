@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import { PortfolioMotion } from '@/components/portfolio-motion'
+import GlimmerVale from '@/components/glimmer-vale'
 
 const projects = [
   {
@@ -39,6 +40,18 @@ function SiteHeader() {
 function Hero() {
   return (
     <section className="hero" id="top" aria-labelledby="hero-title">
+      <div className="hero-art" aria-hidden="true">
+        <GlimmerVale
+          speed={38}
+          scale={85}
+          density={56}
+          sparkle={58}
+          background="#24233d"
+          skyTop="#343568"
+          skyHorizon="#6d678f"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', minWidth: 0, minHeight: 0 }}
+        />
+      </div>
       <div className="hero-kicker"><span className="status-dot" /> Available for select projects <span className="kicker-year">2025 — 26</span></div>
       <div className="hero-title-wrap">
         <h1 id="hero-title" className="hero-title" aria-label="Portfolio."><span className="hero-letters" aria-hidden="true">{'Portfolio'.split('').map((letter, index) => <span className="hero-letter" style={{ animationDelay: `${index * 55}ms` }} key={`${letter}-${index}`}>{letter}</span>)}<span className="hero-period hero-letter" style={{ animationDelay: '520ms' }}>.</span></span></h1>
