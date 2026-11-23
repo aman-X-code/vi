@@ -2,25 +2,20 @@ import Image from 'next/image'
 import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import { PortfolioMotion } from '@/components/portfolio-motion'
 import GlimmerVale from '@/components/glimmer-vale'
+import HoverImageReveal from '@/components/hover-image-reveal'
 
 const projects = [
   {
-    number: '01',
     title: 'NOA',
     type: 'Branding · Packaging',
     year: '2025',
     image: '/noa-skincare.png',
-    tone: 'project-card--cream',
-    description: 'A softer kind of skincare.',
   },
   {
-    number: '02',
     title: 'Stories in print',
     type: 'Publication · Editorial',
     year: '2024',
     image: '/editorial-art.png',
-    tone: 'project-card--blue',
-    description: 'A little space for big ideas.',
   },
 ]
 
@@ -77,17 +72,30 @@ function WorkSection() {
         <SectionLabel number="01">The selected work</SectionLabel>
         <h2 id="work-title">A few things<br /><em>made with meaning.</em></h2>
       </div>
-      <div className="project-grid">
-        {projects.map((project) => (
-          <article className={`project-card ${project.tone} reveal`} key={project.number}>
-            <div className="project-visual">
-              <Image src={project.image} alt={`${project.title} visual identity project`} fill sizes="(max-width: 700px) 100vw, 50vw" />
-              <span className="project-no">{project.number}</span>
-              <a className="project-link" href="mailto:lawadkarvaibhavi@gmail.com?subject=Tell%20me%20about%20your%20work" aria-label={`Ask about ${project.title}`}><ArrowUpRight aria-hidden="true" /></a>
-            </div>
-            <div className="project-caption"><div><h3>{project.title}</h3><p>{project.description}</p></div><div className="project-meta"><span>{project.type}</span><span>{project.year}</span></div></div>
-          </article>
-        ))}
+      <div className="project-reveal-stage reveal">
+        <HoverImageReveal
+          items={{
+            itemCount: projects.length,
+            ...Object.fromEntries(projects.map((project, index) => [`item${index + 1}`, {
+              text: project.title,
+              meta: `${project.type} · ${project.year}`,
+              image: { src: project.image, alt: `${project.title} visual identity project` },
+              link: `mailto:lawadkarvaibhavi@gmail.com?subject=${encodeURIComponent(`Tell me about ${project.title}`)}`,
+            }]))
+          }}
+          font={{ fontFamily: 'var(--serif)', fontSize: 'clamp(48px, 8vw, 112px)', fontWeight: 400, lineHeight: '.88', letterSpacing: '-.065em' }}
+          textColor="#24233d"
+          dimColor="#9e968f"
+          align="left"
+          rowGap={24}
+          imageWidth={280}
+          imageHeight={350}
+          rounded={2}
+          offsetX={180}
+          followStrength={3}
+          backgroundColor="transparent"
+          style={{ height: 'auto', minHeight: 'clamp(280px, 34vw, 430px)', padding: 0 }}
+        />
       </div>
       <div className="work-footnote"><span>More stories are always in progress.</span><span>Scroll on <span aria-hidden="true">↓</span></span></div>
       <div className="marquee" aria-hidden="true"><div className="marquee-track">{Array.from({ length: 4 }, (_, index) => <span key={index}>Made with meaning <b>✳</b> Made to be remembered <b>✳</b></span>)}</div></div>

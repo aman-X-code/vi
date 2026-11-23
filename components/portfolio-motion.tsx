@@ -56,7 +56,7 @@ export function PortfolioMotion() {
 
     const handleHover = (event: PointerEvent) => {
       const candidate = event.type === 'pointerout' ? event.relatedTarget : event.target
-      const target = candidate instanceof Element ? candidate.closest('a, button, .project-card, .skill-row') : null
+      const target = candidate instanceof Element ? candidate.closest('a, button, .hover-image-reveal-item, .skill-row') : null
       pointer?.classList.toggle('is-active', Boolean(target))
     }
 
