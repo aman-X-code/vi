@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { ArrowDown, ArrowUpRight } from 'lucide-react'
+import { PortfolioMotion } from '@/components/portfolio-motion'
 
 const projects = [
   {
@@ -40,7 +41,7 @@ function Hero() {
     <section className="hero" id="top" aria-labelledby="hero-title">
       <div className="hero-kicker"><span className="status-dot" /> Available for select projects <span className="kicker-year">2025 — 26</span></div>
       <div className="hero-title-wrap">
-        <h1 id="hero-title" className="hero-title">Portfolio<span className="hero-period">.</span></h1>
+        <h1 id="hero-title" className="hero-title" aria-label="Portfolio."><span className="hero-letters" aria-hidden="true">{'Portfolio'.split('').map((letter, index) => <span className="hero-letter" style={{ animationDelay: `${index * 55}ms` }} key={`${letter}-${index}`}>{letter}</span>)}<span className="hero-period hero-letter" style={{ animationDelay: '520ms' }}>.</span></span></h1>
         <p className="hero-role">Graphic<br />Designer</p>
       </div>
       <div className="hero-bottom">
@@ -76,6 +77,7 @@ function WorkSection() {
         ))}
       </div>
       <div className="work-footnote"><span>More stories are always in progress.</span><span>Scroll on <span aria-hidden="true">↓</span></span></div>
+      <div className="marquee" aria-hidden="true"><div className="marquee-track">{Array.from({ length: 4 }, (_, index) => <span key={index}>Made with meaning <b>✳</b> Made to be remembered <b>✳</b></span>)}</div></div>
     </section>
   )
 }
@@ -97,7 +99,7 @@ function PracticeSection() {
   return (
     <section className="practice-section section-pad" aria-labelledby="practice-title">
       <SectionLabel number="03">What I bring to the table</SectionLabel>
-      <div className="practice-grid">
+      <div className="practice-grid reveal">
         <div className="practice-title"><h2 id="practice-title">A curious<br /><em>kind of practice.</em></h2><p>Mixing instinct with intention to make work that feels considered, human, and a little unexpected.</p></div>
         <div className="skills-list" aria-label="Design disciplines">{skills.map((skill, index) => <div className="skill-row" key={skill}><span className="skill-index">0{index + 1}</span><span>{skill}</span><ArrowUpRight aria-hidden="true" /></div>)}</div>
       </div>
@@ -110,12 +112,12 @@ function ContactFooter() {
   return (
     <footer className="contact-section" id="contact">
       <div className="contact-top"><SectionLabel number="04">Have something in mind?</SectionLabel><span className="contact-availability"><span className="status-dot" /> Open to select collaborations</span></div>
-      <a className="contact-title" href="mailto:lawadkarvaibhavi@gmail.com">Let&apos;s make<br /><em>something lovely.</em><ArrowUpRight aria-hidden="true" /></a>
+      <a className="contact-title reveal" href="mailto:lawadkarvaibhavi@gmail.com">Let&apos;s make<br /><em>something lovely.</em><ArrowUpRight aria-hidden="true" /></a>
       <div className="footer-bottom"><a href="mailto:lawadkarvaibhavi@gmail.com">lawadkarvaibhavi@gmail.com</a><div className="social-links"><a href="https://www.instagram.com/_vaibhavi_xo">Instagram ↗</a><a href="https://www.behance.net/">Behance ↗</a><a href="https://www.linkedin.com/">LinkedIn ↗</a></div><span>© 2025 Vaibhavi Lawadkar</span><a href="#top" className="back-top">Back to top ↑</a></div>
     </footer>
   )
 }
 
 export function Portfolio() {
-  return <main className="portfolio-shell"><SiteHeader /><Hero /><WorkSection /><AboutSection /><PracticeSection /><ContactFooter /></main>
+  return <main className="portfolio-shell"><PortfolioMotion /><SiteHeader /><Hero /><WorkSection /><AboutSection /><PracticeSection /><ContactFooter /></main>
 }
