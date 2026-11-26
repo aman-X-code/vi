@@ -11,6 +11,7 @@ export default function HeroIdCard() {
   const cardRef = useRef<HTMLDivElement>(null)
   const strapRef = useRef<SVGPathElement>(null)
   const strapHighlightRef = useRef<SVGPathElement>(null)
+  const strapStitchRef = useRef<SVGPathElement>(null)
   const positionRef = useRef<CardPosition>({ x: 0, y: 0 })
   const dragOriginRef = useRef<CardPosition>({ x: 0, y: 0 })
   const pointerOriginRef = useRef<CardPosition>({ x: 0, y: 0 })
@@ -23,7 +24,8 @@ export default function HeroIdCard() {
     const card = cardRef.current
     const strap = strapRef.current
     const highlight = strapHighlightRef.current
-    if (!stage || !card || !strap || !highlight) return
+    const stitch = strapStitchRef.current
+    if (!stage || !card || !strap || !highlight || !stitch) return
 
     const width = stage.clientWidth
     const anchorX = width / 2
@@ -32,9 +34,11 @@ export default function HeroIdCard() {
     const bend = Math.max(22, Math.abs(cardX - anchorX) * 0.2)
     const path = `M ${anchorX - 20} -10 C ${anchorX - 25} ${cardY * 0.32}, ${cardX - bend - 20} ${cardY * 0.74}, ${cardX - 20} ${cardY} L ${cardX + 20} ${cardY} C ${cardX + bend + 20} ${cardY * 0.74}, ${anchorX + 25} ${cardY * 0.32}, ${anchorX + 20} -10 Z`
     const shine = `M ${anchorX} -8 C ${anchorX + 4} ${cardY * 0.32}, ${cardX - bend * 0.25 + 4} ${cardY * 0.74}, ${cardX + 3} ${cardY - 3}`
+    const stitchLine = `M ${anchorX - 12} -8 C ${anchorX - 17} ${cardY * 0.32}, ${cardX - bend * 0.25 - 9} ${cardY * 0.74}, ${cardX - 10} ${cardY - 3}`
 
     strap.setAttribute('d', path)
     highlight.setAttribute('d', shine)
+    stitch.setAttribute('d', stitchLine)
   }, [])
 
   const setPosition = useCallback((position: CardPosition, tilt = 0) => {
@@ -151,14 +155,15 @@ export default function HeroIdCard() {
         <svg className="hero-id-card-lanyard" aria-hidden="true" focusable="false">
           <defs>
             <linearGradient id="lanyard-material" x1="0" x2="1" y1="0" y2="0">
-              <stop offset="0" stopColor="#888783" />
-              <stop offset=".22" stopColor="#f4f1e9" />
-              <stop offset=".52" stopColor="#c9c6be" />
-              <stop offset=".78" stopColor="#f7f4ed" />
-              <stop offset="1" stopColor="#73716d" />
+              <stop offset="0" stopColor="#241714" />
+              <stop offset=".2" stopColor="var(--lanyard-wine)" />
+              <stop offset=".48" stopColor="#30201c" />
+              <stop offset=".76" stopColor="#674332" />
+              <stop offset="1" stopColor="#1c1412" />
             </linearGradient>
           </defs>
           <path ref={strapRef} className="hero-id-card-strap" />
+          <path ref={strapStitchRef} className="hero-id-card-strap-stitch" />
           <path ref={strapHighlightRef} className="hero-id-card-strap-highlight" />
         </svg>
 
@@ -185,7 +190,7 @@ export default function HeroIdCard() {
             <span className="hero-id-card-photo-stamp">MADE<br />WITH<br />MEANING</span>
           </span>
           <span className="hero-id-card-details">
-            <span className="hero-id-card-label">VISUAL STORYTELLER <span>✳</span> INDIA</span>
+            <span className="hero-id-card-label">BRAND DESIGNER <span>✳</span> INDIA</span>
             <span className="hero-id-card-name" role="heading" aria-level={1} id="hero-title">Vaibhavi<br />Lawadkar<span>.</span></span>
             <span className="hero-id-card-footer"><span>BRAND · PRINT · DIGITAL</span><span>OPEN TO WORK</span></span>
           </span>
