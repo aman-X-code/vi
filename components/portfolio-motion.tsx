@@ -34,7 +34,6 @@ export function PortfolioMotion() {
         const amount = scrollable > 0 ? window.scrollY / scrollable : 0
         progress?.style.setProperty('--scroll-progress', String(amount))
         header?.classList.toggle('is-scrolled', window.scrollY > 24)
-        document.documentElement.style.setProperty('--hero-scroll', `${Math.min(window.scrollY * 0.12, 100)}px`)
       })
     }
 

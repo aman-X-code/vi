@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import { PortfolioMotion } from '@/components/portfolio-motion'
-import GlimmerVale from '@/components/glimmer-vale'
+import HeroIdCard from '@/components/hero-id-card'
 import HoverImageReveal from '@/components/hover-image-reveal'
 import GooeyPreloader from '@/components/gooey-preloader'
 
@@ -35,28 +35,17 @@ function SiteHeader() {
 
 function Hero() {
   return (
-    <section className="hero" id="top" aria-labelledby="hero-title">
-      <div className="hero-art" aria-hidden="true">
-        <GlimmerVale
-          speed={38}
-          scale={85}
-          density={56}
-          sparkle={58}
-          background="#24233d"
-          skyTop="#343568"
-          skyHorizon="#6d678f"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', minWidth: 0, minHeight: 0 }}
-        />
+    <section className="id-card-hero" id="top" aria-labelledby="hero-title">
+      <div className="hero-grain" aria-hidden="true" />
+      <div className="hero-caption">
+        <span><span className="status-dot" /> Independent designer</span>
+        <span>Portfolio / 2026</span>
       </div>
-      <div className="hero-kicker"><span className="status-dot" /> Available for select projects <span className="kicker-year">2025 — 26</span></div>
-      <div className="hero-title-wrap">
-        <h1 id="hero-title" className="hero-title" aria-label="Portfolio."><span className="hero-letters" aria-hidden="true">{'Portfolio'.split('').map((letter, index) => <span className="hero-letter" style={{ animationDelay: `${index * 55}ms` }} key={`${letter}-${index}`}>{letter}</span>)}<span className="hero-period hero-letter" style={{ animationDelay: '520ms' }}>.</span></span></h1>
-        <p className="hero-role">Graphic<br />Designer</p>
-      </div>
-      <div className="hero-bottom">
-        <p>Thoughtful visuals, rooted in<br />culture and made for what&apos;s next.</p>
-        <a className="scroll-link" href="#work"><span>Scroll to explore</span><ArrowDown aria-hidden="true" /></a>
-        <span className="hero-index">01 / 04</span>
+      <HeroIdCard />
+      <div className="hero-bottomline">
+        <p>Good ideas deserve<br />a little room to play.</p>
+        <a href="#work">Explore selected work <ArrowDown aria-hidden="true" /></a>
+        <span>Drag the card to explore</span>
       </div>
     </section>
   )
