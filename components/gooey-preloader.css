@@ -1,8 +1,8 @@
 .gp_wrap {
-  --gp-bg: #24233d;
-  --gp-fg: #f6f1ff;
-  --gp-grey: #d6cde8;
-  --gp-ink: #24233d;
+  --gp-bg: #000000;
+  --gp-fg: #f2f2ef;
+  --gp-grey: #c9c9c4;
+  --gp-ink: #000000;
   --gp-focus: rgba(255, 255, 255, 0.35);
   --gp-margin: clamp(20px, 2.8vw, 48px);
   --gp-display: clamp(40px, 4.2vw, 80px);
