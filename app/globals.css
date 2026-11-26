@@ -185,6 +185,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .marquee-track b { color: #b97859; font-family: var(--sans); font-size: .6em; font-weight: 400; }
 .marquee:hover .marquee-track { animation-play-state: paused; }
 
+.project-categories-section { background: #f6f3ee; }
+.project-categories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(32px, 5vw, 64px); justify-items: center; margin: 70px auto 0; max-width: 1180px; }
+@media (max-width: 900px) { .project-categories-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .project-categories-grid { grid-template-columns: 1fr; } }
+.project-categories-hint { color: #8b7a6e; font-family: var(--sans); font-size: 11px; letter-spacing: .11em; margin-top: 82px; text-align: center; text-transform: uppercase; }
+
 .about-section { background: #f0ede7; }
 .about-top { justify-content: space-between; }
 .about-location { color: #867d72; font-size: 10px; letter-spacing: .06em; }
