@@ -180,7 +180,7 @@ export default function HeroIdCard() {
           <span className="hero-id-card-clip" aria-hidden="true"><span /></span>
           <span className="hero-id-card-topline"><span>INDEPENDENT DESIGNER</span><span>IND / 026</span></span>
           <span className="hero-id-card-photo">
-            <Image src="/vaibhavi-portrait.png" alt="" fill sizes="(max-width: 700px) 86vw, 370px" priority />
+            <Image src="/vaibhavi-portrait-new.jpg" alt="" fill sizes="(max-width: 700px) 86vw, 370px" priority />
             <span className="hero-id-card-photo-index">V. / 01</span>
             <span className="hero-id-card-photo-stamp">MADE<br />WITH<br />MEANING</span>
           </span>
