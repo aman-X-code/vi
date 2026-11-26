@@ -3,6 +3,7 @@ import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import { PortfolioMotion } from '@/components/portfolio-motion'
 import GlimmerVale from '@/components/glimmer-vale'
 import HoverImageReveal from '@/components/hover-image-reveal'
+import GooeyPreloader from '@/components/gooey-preloader'
 
 const projects = [
   {
@@ -140,5 +141,5 @@ function ContactFooter() {
 }
 
 export function Portfolio() {
-  return <main className="portfolio-shell"><PortfolioMotion /><SiteHeader /><Hero /><WorkSection /><AboutSection /><PracticeSection /><ContactFooter /></main>
+  return <><GooeyPreloader className="gp_portfolio-loader" minDuration={1.8} goo={14} blobs={5} revealDuration={0.9} /><main className="portfolio-shell"><PortfolioMotion /><SiteHeader /><Hero /><WorkSection /><AboutSection /><PracticeSection /><ContactFooter /></main></>
 }
